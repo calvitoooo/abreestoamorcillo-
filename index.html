@@ -15,6 +15,43 @@
             background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
             overflow: hidden;
         }
+
+        #lock-screen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 9999;
+            text-align: center;
+            padding: 20px;
+        }
+        #lock-screen h1 { font-size: 26px; margin-bottom: 10px; }
+        #lock-screen p { opacity: .85; }
+        #password {
+            margin-top: 20px;
+            padding: 12px 18px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+        }
+        #unlock-btn {
+            margin-top: 15px;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            background: #00c9ff;
+            color: white;
+            font-weight: bold;
+        }
+
         .container {
             background: white;
             padding: 30px;
@@ -26,53 +63,31 @@
             z-index: 10;
             position: relative;
         }
-        img {
-            width: 180px;
-            height: auto;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        img { width: 180px; border-radius: 15px; margin-bottom: 20px; display:block; margin-left:auto; margin-right:auto; }
         h2 { color: #444; font-size: 20px; margin-bottom: 25px; }
-        .buttons {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            position: relative;
-            height: 60px;
-        }
-        button {
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+        .buttons { display: flex; justify-content: space-around; align-items: center; position: relative; height: 60px; }
+        button { padding: 12px 20px; font-size: 16px; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; }
         #btn-si { background-color: #4CAF50; color: white; }
         #btn-no { background-color: #f44336; color: white; position: absolute; }
         #mensaje-final { display: none; }
         h1 { color: #1e90ff; font-size: 22px; }
         p { color: #555; font-size: 18px; line-height: 1.4; }
-        .corazon {
-            position: fixed;
-            top: -10vh;
-            font-size: 24px;
-            color: #ff4757;
-            user-select: none;
-            z-index: 5;
-            animation: caer linear forwards;
-        }
+        .corazon { position: fixed; top: -10vh; font-size: 24px; color: #ff4757; user-select: none; z-index: 5; animation: caer linear forwards; }
         @keyframes caer { to { transform: translateY(110vh) rotate(360deg); } }
     </style>
 </head>
 <body>
-    <div class="container" id="main-container">
+
+    <div id="lock-screen">
+        <h1>Perdonal Autorizado</h1>
+        <p>Solo Panchito mi amorcillo</p>
+        <input id="password" type="password" placeholder="Ingresa la clave">
+        <button id="unlock-btn">Desbloquear</button>
+        <p id="error" style="color:#ff9aa2;display:none;margin-top:10px;">Ups... no es esa 😢</p>
+    </div>
+
+    <div class="container" id="main-container" style="display:none;">
         <img id="pinguino-img" src="./inicio.gif" alt="Pingüino">
-        
         <div id="pregunta">
             <h2>¿Quieres ser mi San Valentín🫵?</h2>
             <div class="buttons">
@@ -85,7 +100,26 @@
             <p>TÚ TAMBIÉN MERECES ESTE TIPO DE SORPRESAS MI NIÑITILLO, TE AMO MUCHOTOTOTE🤍</p>
         </div>
     </div>
+
     <script>
+        const PASSWORD = "teamomuchominiñitillo";
+        const lock = document.getElementById('lock-screen');
+        const main = document.getElementById('main-container');
+        const unlockBtn = document.getElementById('unlock-btn');
+        const passInput = document.getElementById('password');
+        const error = document.getElementById('error');
+
+        unlockBtn.onclick = () => {
+            if(passInput.value.toLowerCase() === PASSWORD){
+                lock.style.display = 'none';
+                main.style.display = 'block';
+            } else {
+                error.style.display = 'block';
+                passInput.value = '';
+            }
+        };
+        passInput.addEventListener('keypress', e => { if(e.key === 'Enter') unlockBtn.click(); });
+
         const btnNo = document.getElementById('btn-no');
         const btnSi = document.getElementById('btn-si');
         const pregunta = document.getElementById('pregunta');
@@ -117,7 +151,6 @@
         btnSi.addEventListener('click', () => {
             pregunta.style.display = 'none';
             mensajeFinal.style.display = 'block';
-            // USAMOS TU OTRO ARCHIVO LOCAL
             pinguino.src = "./final.gif";
             lanzarCorazones();
         });

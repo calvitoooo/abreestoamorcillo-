@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>abre esto amorcillo</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family:Arial, Helvetica, sans-serif;
+    overflow:hidden;
+}
+
+#carta{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    text-align:center;
+    width:280px;
+    transition:0.5s;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:12px;
+    background:#ff6b81;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#mensaje{
+    display:none;
+    font-size:18px;
+    margin-top:15px;
+}
+
+.corazon{
+    position:absolute;
+    color:#ff4d6d;
+    animation:flotar 4s linear infinite;
+}
+
+@keyframes flotar{
+    0%{transform:translateY(0);opacity:1;}
+    100%{transform:translateY(-600px);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="carta">
+    <h2>toca el botón amorcillo</h2>
+    <button onclick="mostrar()">abrir</button>
+    <div id="mensaje">
+        <p>solo quería decirte algo gkashka</p>
+        <h3>Te amo muchototote</h3>
+    </div>
+</div>
+
+<script>
+function mostrar(){
+    document.getElementById("mensaje").style.display="block";
+
+    for(let i=0;i<25;i++){
+        let corazon=document.createElement("div");
+        corazon.className="corazon";
+        corazon.innerHTML="❤";
+        corazon.style.left=Math.random()*100+"vw";
+        corazon.style.fontSize=(Math.random()*20+15)+"px";
+        corazon.style.animationDuration=(Math.random()*2+3)+"s";
+        document.body.appendChild(corazon);
+    }
+}
+</script>
+
+</body>
+</html>

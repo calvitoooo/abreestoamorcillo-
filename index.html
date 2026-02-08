@@ -30,7 +30,8 @@
 
         img {
             width: 180px;
-            height: auto;
+            height: 180px;
+            object-fit: cover;
             border-radius: 15px;
             margin-bottom: 20px;
         }
@@ -105,7 +106,7 @@
 <body>
 
     <div class="container" id="main-container">
-        <img id="pinguino-img" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW56am81ZzZ2am96amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZContext=1/Vu5At5LqIAaVW/giphy.gif" alt="Pingüino">
+        <img id="pinguino-img" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW56am81ZzZ2am96amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZContext=1/Vu5At5LqIAaVW/giphy.webp" alt="Pingüino">
         
         <div id="pregunta">
             <h2>¿Quieres ser mi San Valentín🫵?</h2>
@@ -158,7 +159,8 @@
         btnSi.addEventListener('click', () => {
             pregunta.style.display = 'none';
             mensajeFinal.style.display = 'block';
-            pinguino.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW56am81ZzZ2am96amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZContext=1/10svL9d26qXpYQ/giphy.gif";
+            // Imagen Corregida 2
+            pinguino.src = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpndW56am81ZzZ2am96amZ6amZ6amZ6amZ6amZ6amZ6amZ6amZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZContext=1/10svL9d26qXpYQ/giphy.webp";
             lanzarCorazones();
         });
     </script>
